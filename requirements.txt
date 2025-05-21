@@ -1,0 +1,3 @@
+Flask
+requests
+# Outras dependências do seu projeto

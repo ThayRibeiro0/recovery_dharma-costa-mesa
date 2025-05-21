@@ -1,0 +1,9 @@
+[build]
+  command = "pip install -r requirements.txt && cp -r netlify/functions .netlify/functions"
+  functions = ".netlify/functions"
+  publish = "static" # Ou a pasta onde seus arquivos estáticos estão
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200

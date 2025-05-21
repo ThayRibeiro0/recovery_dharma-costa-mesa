@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Meetings - Recovery Dharma Costa Mesa</title>
+  <link rel="stylesheet" href="./static/styles.css">
+  <link rel="stylesheet" href="./static/meetings.css">
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+</head>
+
+<body>
+  <header class="top-nav">
+    <div class="logo">
+      <img src="/static/logo.png" alt="Recovery Dharma Costa Mesa logo">
+    </div>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('meetings') }}">Meetings</a>
+      <a href="{{ url_for('calendar') }}">Calendar</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+  </header>
+
+  <main class="meetings-container">
+    <section class="meeting-info">
+      <img src="../static//1.png" alt="Weekly Meetings">
+      <div class="meeting-description">
+        <h2>Our Meetings</h2>
+        <p>
+          Our meetings are meditation-based gatherings that provide a welcoming and supportive environment.
+          Each session includes time for quiet meditation, followed by an open space for sharing feelings,
+          reflections on the meditation experience, readings, or personal stories of recovery.
+          Everyone is welcome, and the atmosphere is one of compassion, acceptance, and mutual support.
+          We encourage you to come as you are, without any prior experience in meditation or recovery.
+        </p>
+      <p>
+          We often use and sell the book from "<a href="https://drive.google.com/file/d/1Isotp-WlUedFJlKDqjpvO7uKgVsvX3J1/view" target="_blank" rel="noopener noreferrer">Recovery Dharma</a>" during our meetings. You can download it for easy access by clicking the link or contact us to get your fisic version.
+      </p>
+        <p>Our meetings are open: </p>
+          <strong>Every Friday of the month at 6:30 PM to 8:00PM</strong>
+      </div>
+    </section>
+
+    <section class="calendar-section">
+      <div class="calendar-header">
+        <button onclick="prevMonth()">Previous</button>
+        <span id="month-title" class="month-year"></span>
+        <button onclick="nextMonth()">Next</button>
+      </div>
+      <div class="days-row">
+        <div class="day-name">Sun</div>
+        <div class="day-name">Mon</div>
+        <div class="day-name">Tue</div>
+        <div class="day-name">Wed</div>
+        <div class="day-name">Thu</div>
+        <div class="day-name">Fri</div>
+        <div class="day-name">Sat</div>
+      </div>
+      <div id="calendar-grid" class="days-row"></div>
+    </section>
+
+
+
+    <section class="location-section">
+      <h2>Location</h2>
+      <p><strong>Higashi Honganji Buddhist Temple</strong></p>
+      <p class="address">
+        Address: 254 Victoria St, Costa Mesa, CA 92627
+      </p>
+      <div class="location-image">
+        <img src="/static/location1.png" alt="Temple entrance">
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3317.187487858718!2d-117.9252755236195!3d33.6518789807008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd3019899c263f%3A0x4129a6499291186!2s254+Victoria+St,+Costa+Mesa,+CA+92627!5e0!3m2!1sen!2sus!4v1732054167789!5m2!1sen!2sus"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const calendarGrid = document.getElementById('calendar-grid');
+    const monthTitle = document.getElementById('month-title');
+    let currentDate = new Date();
+
+    function renderCalendar(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      calendarGrid.innerHTML = '';
+      monthTitle.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+      // Preenche os espaços antes do primeiro dia
+      for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement('div');
+        calendarGrid.appendChild(emptyCell);
+      }
+
+      // Adiciona os dias do mês
+      for (let day = 1; day <= daysInMonth; day++) {
+        const cell = document.createElement('div');
+        const current = new Date(year, month, day);
+
+        cell.textContent = day;
+        cell.classList.add('date-cell');
+
+        if (current.getDay() === 5) {
+          cell.classList.add('meeting'); // Sexta-feira
+        }
+
+        calendarGrid.appendChild(cell);
+      }
+    }
+
+    function prevMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar(currentDate);
+    }
+
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar(currentDate);
+    }
+
+    renderCalendar(currentDate);
+  </script>
+
+</body>
+
+</html>
