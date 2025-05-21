@@ -1,7 +1,13 @@
 # netlify/functions/api/main.py
 import json
+import os
+import sys
 from flask import Flask, request
 from werkzeug.wrappers import Response
+
+# Add the project root to the Python path
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
 
 # Importe sua aplicação Flask original (assumindo que ela esteja em app.py)
 from app import app as flask_app
