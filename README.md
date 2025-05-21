@@ -6,6 +6,17 @@ This project is an informational website for the **Recovery Dharma Costa Mesa** 
 
 🌐 [https://recovery-dharma-costa-mesa.onrender.com](https://recovery-dharma-costa-mesa.onrender.com)
 
+
+### 📸 Screenshots
+
+<div>
+  <img src="./screenshots/cap1.png" alt="cap1" width="600" height="300">
+  <img src="./screenshots/cap2.png" alt="cap2" width="600" height="300">
+  <img src="./screenshots/cap3.png" alt="cap3" width="600" height="300">
+  <img src="./screenshots/cap4.png" alt="cap4" width="600" height="300">
+  <img src="./screenshots/cap5.png" alt="cap5" width="600" height="300">
+</div>
+
 ---
 
 ## 💡 Objective

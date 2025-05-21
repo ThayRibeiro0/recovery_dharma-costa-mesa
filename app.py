@@ -47,21 +47,21 @@ def calendar():
             if name and days_clean.isdigit():
                 data[name] = int(days_clean)
                 save_data_to_file(data)
-                messages.append(f"Tempo de recuperação atualizado para {name}!")
+                messages.append(f"Updated recovery time for {name}!")
                 participant_data = data # Atualiza a variável global
                 return redirect(url_for('calendar'))
             else:
-                messages.append("Por favor, insira um nome válido e um número de dias.")
+                messages.append("Please, enter a valid name and number of days.")
                 return redirect(url_for('calendar'))
         elif "celebration_date" in request.form and "celebration_description" in request.form:
             celebration_date = request.form.get("celebration_date")
             celebration_description = request.form.get("celebration_description")
             if celebration_date and celebration_description:
                 celebration_dates[celebration_date] = celebration_description
-                messages.append(f"Comemoração '{celebration_description}' salva para {celebration_date}!")
+                messages.append(f"Celebration '{celebration_description}' saved to {celebration_date}!")
                 return redirect(url_for('calendar'))
             else:
-                messages.append("Por favor, preencha a data e a descrição da comemoração.")
+                messages.append("Please, fill in the date and description of the celebration.")
                 return redirect(url_for('calendar'))
 
     participant_data = data # Carrega os dados para a variável global ao carregar a página
@@ -73,7 +73,7 @@ def delete_celebration():
     date_to_delete = request.form.get('date')
     if date_to_delete in celebration_dates:
         del celebration_dates[date_to_delete]
-        messages.append(f"Comemoração de {date_to_delete} deletada!")
+        messages.append(f"Celebration of {date_to_delete} deleted!")
     return redirect(url_for('calendar'))
 
 @app.route('/delete_participant', methods=['POST'])
@@ -85,7 +85,7 @@ def delete_participant():
         del data[name_to_delete]
         save_data_to_file(data)
         participant_data = data # Atualiza a variável global
-        messages.append(f"Participante {name_to_delete} deletado!")
+        messages.append(f"Participant {name_to_delete} deleted!")
     return redirect(url_for('calendar'))
 
 @app.route("/contact")

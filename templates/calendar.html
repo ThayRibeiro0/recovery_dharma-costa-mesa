@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar - Tempo de Recuperação</title>
+    <title>Calendar - Recovery Time</title>
     <link rel="stylesheet" href="./static/styles.css" />
     <link rel="stylesheet" href="./static/calendar.css" />
     <style>
-        /* ... seus estilos CSS existentes ... */
-
+        /* ... your existing CSS styles ... */
     </style>
 </head>
+
 <body>
     <header class="top-nav">
         <div class="logo">
@@ -29,55 +30,56 @@
     {% endif %}
 
     <div class="form-container">
-        <h2 class="save1">Registrar Tempo de Recuperação</h2>
+        <h2 class="save1">Record Recovery Time</h2>
         <form method="POST">
-            <label for="name">Nome do participante:</label>
-            <input type="text" id="name" name="name" required><br>
-            <label for="days_clean">🙌Dias limpo/recuperado:</label>
+            <label for="name">Participant name:</label>
+            <input type="text" id="name" name="name" required<br>
+            <label for="days_clean">🙌Days clean/recovered:</label>
             <input type="number" id="days_clean" name="days_clean" min="0" required><br><br>
-            <button type="submit">Salvar Recuperação</button>
+            <button type="submit">Save Recovery</button>
         </form>
 
-        <h2 class="save">Salvar Data de Comemoração</h2>
+        <h2 class="save">Save Celebration Date</h2>
         <form method="POST">
-            <label for="celebration_date">Data:</label>
+            <label for="celebration_date">Date:</label>
             <input type="date" id="celebration_date" name="celebration_date" required><br>
-            <label for="celebration_description">🎉Nome do participante:</label>
+            <label for="celebration_description">🎉Participant name:</label>
             <input type="text" id="celebration_description" name="celebration_description" required><br><br>
-            <button type="submit">Salvar Comemoração</button>
+            <button type="submit">Save Celebration</button>
         </form>
     </div>
 
     <div class="celebrations-list">
-        <h2>Datas de Comemoração Salvas</h2>
+        <h2>Saved Celebration Dates</h2>
         <ul>
             {% for date, description in celebrations.items() %}
-                <li>
-                    {{ date }}: {{ description }}
-                    <form method="POST" action="{{ url_for('delete_celebration') }}" style="display: inline;">
-                        <input type="hidden" name="date" value="{{ date }}">
-                        <button type="submit" class="delete-button">Deletar</button>
-                    </form>
-                </li>
+            <li>
+                {{ date }}: {{ description }}
+                <form method="POST" action="{{ url_for('delete_celebration') }}" style="display: inline;">
+                    <input type="hidden" name="date" value="{{ date }}">
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </li>
             {% else %}
-                <li>Nenhuma data de comemoração salva ainda.</li>
+            <li>No celebration dates saved yet.</li>
             {% endfor %}
         </ul>
     </div>
 
-    <h2>Participantes e dias de recuperação</h2>
+    <h2>Participants and recovery days</h2>
     <ul>
         {% for name, days in data.items() %}
-            <li>
-                {{ name }}: {{ days }} dias
-                <form method="POST" action="{{ url_for('delete_participant') }}" style="display: inline;">
-                    <input type="hidden" name="name" value="{{ name }}">
-                    <button type="submit" class="delete-button">Deletar</button>
-                </form>
-            </li>
+        <li>
+            {{ name }}: {{ days }} days
+            <form method="POST" action="{{ url_for('delete_participant') }}" style="display: inline;">
+                <input type="hidden" name="name" value="{{ name }}">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </li>
         {% else %}
-            <li>Nenhum participante registrado ainda.</li>
+        <li>No participants registered yet.</li>
         {% endfor %}
     </ul>
 </body>
+
 </html>
