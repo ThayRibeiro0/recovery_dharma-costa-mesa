@@ -337,16 +337,6 @@ body {
     padding: 10px;
     background-size: cover; /* Mantenha cover para preencher a tela */
   }
-  .top-nav {
-    padding: 10px;
-    flex-direction: column; /* Empilhar logo e navegação */
-    align-items: center;
-  }
-  .top-nav nav {
-    margin-top: 15px;
-    gap: 8px;
-    justify-content: center; /* Centralizar os links */
-  }
   .meetings-container {
     padding: 20px 10px;
   }
